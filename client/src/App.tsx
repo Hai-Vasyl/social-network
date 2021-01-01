@@ -321,7 +321,12 @@ const App: React.FC = () => {
 
   // TODO: dummy f()
   const dummyFunction = () => {
-    console.log("Something imporant!")
+    console.log("Something imporant -----!")
+  }
+
+  // TODO: dummy f()
+  const dummyFunction2 = () => {
+    console.log("Something -----!")
   }
 
   if (initLoad) {
