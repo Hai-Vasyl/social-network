@@ -1,5 +1,6 @@
 $colors: (
-  main: hsl(240, 14%, 20%),
+  // main: hsl(240, 14%, 20%),
+  main: grey,
   main-light: lighten(#2b2b39, 2%),
   secondary: lighten(#2b2b39, 8%),
   second-dark: darken(#2b2b39, 0%),
@@ -13,7 +14,7 @@ $colors: (
   title-simple: rgb(199, 199, 199),
   danger: rgb(247, 120, 120),
   bg: rgba(43, 43, 57, 0.573),
-  bg-light: hsla(240, 14%, 25%, 0.51),
+  bg-light: hsla(240, 14%, 25%, 0.51)
 );
 $shadows: (
   main: (
