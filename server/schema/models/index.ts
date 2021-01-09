@@ -4,8 +4,10 @@ import Message from "./Message"
 import UserChat from "./UserChat"
 import Notification from "./Notification"
 import UnreadMessage from "./UnreadMessage"
-// import Post from "./Post"
-// import Uploads from "./Uploads"
+import ContentSet from "./ContentSet"
+import LikesRecord from "./LikesRecord"
+import Comment from "./Comment"
+import Upload from "./Upload"
 
 export {
   User,
@@ -14,5 +16,8 @@ export {
   UserChat,
   Notification,
   UnreadMessage,
-  //  Post, Uploads
+  ContentSet,
+  LikesRecord,
+  Comment,
+  Upload,
 }

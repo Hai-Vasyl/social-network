@@ -308,6 +308,11 @@ const App: React.FC = () => {
     setNotifToasts(notifToasts.filter((notif) => notif.id !== notifId))
   }
 
+  // TODO: function
+  const newDummyFunction = () => {
+    console.log("New dummy f")
+  }
+
   const getIconToastByType = (type: string) => {
     switch (type) {
       case notifTypes.accessDenied.keyWord:

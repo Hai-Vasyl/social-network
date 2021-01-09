@@ -15,10 +15,14 @@ import {
   Query as QUnreadMessages,
   Mutation as MUnreadMessages,
 } from "./resolvers/unreadmessages"
+import { Mutation as MContentSets } from "./resolvers/contentsets"
 import { Chat } from "./resolvers/chat"
 import { Message } from "./resolvers/message"
 import { UserChat } from "./resolvers/userchat"
 import { Notification } from "./resolvers/notification"
+import { ContentSet } from "./resolvers/contentset"
+import { UploadContent } from "./resolvers/uploadcontent"
+import { Comment } from "./resolvers/comment"
 
 const schema = {
   typeDefs,
@@ -35,6 +39,7 @@ const schema = {
       ...MMessages,
       ...MNotifications,
       ...MUnreadMessages,
+      ...MContentSets,
     },
     Subscription: {
       ...SMessages,
@@ -44,6 +49,9 @@ const schema = {
     Message,
     UserChat,
     Notification,
+    ContentSet,
+    UploadContent,
+    Comment,
   },
 }
 

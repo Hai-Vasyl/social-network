@@ -16,6 +16,47 @@ export default gql`
     typeUser: String!
     date: String!
   }
+  type LikeRecord {
+    itemId: ID!
+    itemType: String!
+    owner: ID!
+    liked: Boolean!
+  }
+  type Comment {
+    content: String!
+    date: String!
+    comment: ID
+    owner: User!
+    contentSet: ID!
+    likes: Int!
+    dislikes: Int!
+    replies: Int!
+    likeRecord: LikeRecord
+  }
+  type ContentSet {
+    id: ID!
+    owner: User!
+    date: String!
+    content: String!
+    sticky: Boolean!
+    category: String!
+    likes: Int!
+    dislikes: Int!
+    comments: Int!
+    likeRecord: LikeRecord
+  }
+  type UploadContent {
+    owner: ID!
+    date: String!
+    location: String!
+    contentSet: ContentSet!
+    key: String!
+  }
+  type ContentSetUpload {
+    uploads: [UploadContent]!
+    contentSet: ContentSet!
+    comments: [Comment]!
+  }
   type Message {
     id: ID!
     content: String!
@@ -36,11 +77,6 @@ export default gql`
     type: String!
     lastMessage: Message
   }
-  # type UnreadMessage {
-  #   id: ID!
-  #   userId: User!
-  #   messageId: Message!
-  # }
   type UserChat {
     id: ID!
     userId: User!
@@ -89,6 +125,11 @@ export default gql`
     getUnreadMessages: [Message]!
   }
   type Mutation {
+    createContentSet(
+      uploads: [Upload]!
+      content: String!
+      category: String!
+    ): ContentSetUpload!
     createChat(
       title: String!
       description: String
