@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react"
-import { Route, Switch } from "react-router-dom"
+import { Route, Switch, Redirect } from "react-router-dom"
 import { RootStore } from "../redux/store"
 import { IRoute } from "../interfaces"
 import { routes } from "../modules/routes"
@@ -37,12 +37,21 @@ const Routes = () => {
       ></div>
       {token ? (
         user.typeUser === "admin" ? (
-          <Switch>{mapReduce(routes.admin)}</Switch>
+          <Switch>
+            {mapReduce(routes.admin)}
+            <Redirect to='/' />
+          </Switch>
         ) : (
-          <Switch>{mapReduce(routes.user)}</Switch>
+          <Switch>
+            {mapReduce(routes.user)}
+            <Redirect to='/' />
+          </Switch>
         )
       ) : (
-        <Switch>{mapReduce(routes.unregistered)}</Switch>
+        <Switch>
+          {mapReduce(routes.unregistered)}
+          <Redirect to='/' />
+        </Switch>
       )}
     </>
   )

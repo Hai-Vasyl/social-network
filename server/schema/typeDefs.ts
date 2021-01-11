@@ -44,7 +44,7 @@ export default gql`
     dislikes: Int!
     comments: Int!
     likeRecord: LikeRecord
-    image: UploadContent
+    image: UploadContent!
   }
   type UploadContent {
     owner: ID!

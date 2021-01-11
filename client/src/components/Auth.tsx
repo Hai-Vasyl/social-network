@@ -15,6 +15,7 @@ import styles from "../styles/auth.module"
 import stylesButton from "../styles/button.module"
 // @ts-ignore
 import stylesField from "../styles/field.module"
+import LoaderData from "./LoaderData"
 
 const Auth: React.FC = () => {
   const {
@@ -137,29 +138,32 @@ const Auth: React.FC = () => {
       />
     )
   })
-
   return (
-    <div className={`${styles.form} ${authForm && styles.form__active}`}>
-      <h3 className={`popup-title ${styles.form__title}`}>
-        {isLogin ? "Login" : "Register"}
-      </h3>
-      <form className={styles.form__fields} onSubmit={handleSubmit}>
-        {fields}
-        <button className='btn-handler'></button>
-      </form>
-      <div className={styles.form__btns}>
-        <Button
-          click={handleSubmit}
-          exClass={stylesButton.btn_primary}
-          Icon={isLogin ? AiOutlineLogin : AiOutlineCheckCircle}
-          title={isLogin ? "Sign In" : "Sign Up"}
-        />
-        <Button
-          click={flipForm}
-          exClass={stylesButton.btn_simple}
-          Icon={isLogin ? AiOutlineCheckCircle : AiOutlineLogin}
-          title={isLogin ? "Sign Up" : "Sign In"}
-        />
+    <div className={` ${styles.form} ${authForm && styles.form__active}`}>
+      <div className='form-wrapper'>
+        <LoaderData load={logFetch.loading || regFetch.loading} />
+
+        <h3 className={`popup-title ${styles.form__title}`}>
+          {isLogin ? "Login" : "Register"}
+        </h3>
+        <form className={styles.form__fields} onSubmit={handleSubmit}>
+          {fields}
+          <button className='btn-handler'></button>
+        </form>
+        <div className={styles.form__btns}>
+          <Button
+            click={handleSubmit}
+            exClass={stylesButton.btn_primary}
+            Icon={isLogin ? AiOutlineLogin : AiOutlineCheckCircle}
+            title={isLogin ? "Sign In" : "Sign Up"}
+          />
+          <Button
+            click={flipForm}
+            exClass={stylesButton.btn_simple}
+            Icon={isLogin ? AiOutlineCheckCircle : AiOutlineLogin}
+            title={isLogin ? "Sign Up" : "Sign In"}
+          />
+        </div>
       </div>
     </div>
   )

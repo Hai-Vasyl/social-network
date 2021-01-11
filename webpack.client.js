@@ -14,11 +14,20 @@ const config = {
     path: path.resolve(__dirname, "dist", "client"),
   },
   resolve: {
-    extensions: [".js", ".json", ".jsx", ".css", ".scss", ".tsx", ".ts"],
+    extensions: [
+      ".js",
+      ".json",
+      ".jsx",
+      ".css",
+      ".scss",
+      ".tsx",
+      ".ts",
+      ".svg",
+    ],
   },
   module: {
     rules: [
-      { test: /\.(png|jpg|jpeg|gif)$/, use: ["file-loader"] },
+      { test: /\.(png|jpg|jpeg|gif|svg)$/, use: ["file-loader"] },
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,

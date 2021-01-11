@@ -2,6 +2,7 @@ import React from "react"
 // @ts-ignore
 import styles from "../styles/field.module"
 import { BiError } from "react-icons/bi"
+import { BsCheck, BsUpload } from "react-icons/bs"
 
 interface IFieldFileProps {
   field: {
@@ -10,9 +11,9 @@ interface IFieldFileProps {
     msg: string
   }
   change(event: React.ChangeEvent<HTMLInputElement>): any
-  file: any
+  file: boolean
   isImportant?: boolean
-  Icon: any
+  multiple?: boolean
 }
 
 const FieldFile: React.FC<IFieldFileProps> = ({
@@ -20,7 +21,7 @@ const FieldFile: React.FC<IFieldFileProps> = ({
   change,
   file,
   isImportant,
-  Icon
+  multiple,
 }) => {
   return (
     <div className={styles.field_file}>
@@ -35,7 +36,11 @@ const FieldFile: React.FC<IFieldFileProps> = ({
           </span>
         </div>
         <label className={styles.field_file__label}>
-          <Icon className={styles.field_file__upload_icon}/>
+          {file ? (
+            <BsCheck className={styles.field_file__upload_icon} />
+          ) : (
+            <BsUpload className={styles.field_file__upload_icon} />
+          )}
           <span>{file ? "File chosen" : "Choose file"}</span>
           <input
             className='btn-handler'
@@ -43,6 +48,7 @@ const FieldFile: React.FC<IFieldFileProps> = ({
             type='file'
             onChange={change}
             autoComplete='off'
+            multiple={multiple}
           />
         </label>
       </div>

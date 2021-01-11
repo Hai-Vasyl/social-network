@@ -1,4 +1,5 @@
 export const SET_AUTH = "SET_AUTH"
+export const LOGOUT_AUTH = "LOGOUT_AUTH"
 
 export type User = {
   id: string
@@ -26,4 +27,8 @@ export interface SetAuth {
   payload: { auth: Auth; init: boolean }
 }
 
-export type AuthReducerTypes = SetAuth
+export interface logoutAuth {
+  type: typeof LOGOUT_AUTH
+}
+
+export type AuthReducerTypes = SetAuth | logoutAuth

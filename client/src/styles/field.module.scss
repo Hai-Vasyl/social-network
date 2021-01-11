@@ -31,7 +31,7 @@
     padding: 7px;
     background-color: transparent;
     border: 1px solid getColor(second-light);
-    border-radius: getRadius(main);
+    // border-radius: getRadius(main);
     transition: getTransition(main);
     outline: none;
     &:focus {
@@ -67,7 +67,7 @@
   &__fileWrapper {
     display: flex;
     border: 1px solid getColor(second-light);
-    border-radius: getRadius(main);
+    // border-radius: getRadius(main);
   }
   &__title {
     width: 50%;

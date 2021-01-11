@@ -6,6 +6,7 @@ import {
   NOTIFICATIONS_TOGGLE,
   CHAT_OPEN,
   CHAT_TOGGLE,
+  AUTHFORM_OPEN,
 } from "./toggleTypes"
 
 interface IInitState {
@@ -51,6 +52,11 @@ const toggleReducer = (
       return {
         ...initState,
         chat: true,
+      }
+    case AUTHFORM_OPEN:
+      return {
+        ...initState,
+        authForm: true,
       }
     case RESET_TOGGLE:
       return initState

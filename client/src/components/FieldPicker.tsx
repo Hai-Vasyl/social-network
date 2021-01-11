@@ -9,14 +9,14 @@ interface IFieldPickerProps {
     title: string
     param: string
     msg: string
-    value?: string
+    value?: any
   }
   options: {
     value: string
     label: string
   }[]
   change(value: string): any
-  Icon: any
+  Icon?: any
   isImportant?: boolean
 }
 
@@ -61,7 +61,7 @@ const FieldPicker: React.FC<IFieldPickerProps> = ({
             className={styles.field_picker__button}
             onClick={() => setToggleDrop((prevDrop) => !prevDrop)}
           >
-            <Icon className={styles.field_file__upload_icon} />
+            {Icon && <Icon className={styles.field_file__upload_icon} />}
             <span>{getLabelOption(field.value || "")}</span>
             <BsCaretDownFill
               className={`${styles.field_picker__triangle} ${

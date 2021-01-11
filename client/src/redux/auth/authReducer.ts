@@ -1,4 +1,4 @@
-import { AuthReducerTypes, SET_AUTH, Auth } from "./authTypes"
+import { AuthReducerTypes, SET_AUTH, LOGOUT_AUTH, Auth } from "./authTypes"
 
 const initState: Auth = {
   token: "",
@@ -27,6 +27,9 @@ const authReducer = (state = initState, action: AuthReducerTypes): Auth => {
       }
       localStorage.setItem("auth", JSON.stringify(action.payload.auth))
       return action.payload.auth
+    case LOGOUT_AUTH:
+      localStorage.removeItem("auth")
+      return initState
     default:
       return state
   }

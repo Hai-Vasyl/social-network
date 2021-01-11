@@ -49,8 +49,7 @@ const ChatModForm: React.FC<IChatModFormProps> = ({
               key={field.param}
               field={field}
               change={handleChangeFieldFile}
-              file={chatImage}
-              Icon={chatImage ? BsCheck : BsUpload}
+              file={!!chatImage}
             />
           )
         } else if (field.param === "type") {
