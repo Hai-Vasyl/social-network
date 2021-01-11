@@ -265,3 +265,13 @@ export const DELETE_UNREAD_MESSAGES = gql`
     deleteUnreadMessages(messages: $messages)
   }
 `
+
+export const CREATE_CONTENTSET = gql`
+  mutation CREATE_CONTENTSET(
+    $uploads: [Upload]!
+    $content: String!
+    $category: String!
+  ) {
+    createContentSet(uploads: $uploads, content: $content, category: $category)
+  }
+`

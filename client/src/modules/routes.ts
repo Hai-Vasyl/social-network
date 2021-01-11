@@ -1,58 +1,121 @@
 import Home from "../pages/Home"
-import Сonversation from "../pages/Сonversation"
 import Profile from "../pages/Profile"
+import CreateContentSet from "../pages/CreateContentSet"
 import Bookmarks from "../pages/Bookmarks"
-import { BsBookmarks, BsHouse, BsChatDots, BsPerson } from "react-icons/bs"
-import { ILink } from "../interfaces"
-// @ts-ignore
-import stylesNavbar from "../styles/navbar.module"
+import Followers from "../pages/Followers"
+import {
+  BsBookmarks,
+  BsHouse,
+  // BsPerson,
+  BsChatDots,
+  BsBell,
+  BsCloudUpload,
+  BsPeople,
+} from "react-icons/bs"
 
-export const getLinks = (userId: string): ILink[] => {
-  return [
-    {
-      to: "/",
-      exact: true,
-      Title: BsHouse,
-      className: stylesNavbar.link,
-      activeClassName: stylesNavbar.link__active,
-    },
-    // {
-    //   to: "/conversation",
-    //   Title: BsChatDots,
-    //   className: stylesNavbar.link,
-    //   activeClassName: stylesNavbar.link__active,
-    // },
-    {
-      to: "/bookmarks",
-      Title: BsBookmarks,
-      className: stylesNavbar.link,
-      activeClassName: stylesNavbar.link__active,
-    },
-    {
-      to: `/profile/${userId}`,
-      exact: true,
-      Title: BsPerson,
-      className: stylesNavbar.link_extend,
-      activeClassName: stylesNavbar.link__active,
-    },
-  ]
+export const btnKeys = {
+  chat: {
+    keyWord: "chat",
+  },
+  notif: {
+    keyWord: "notification",
+  },
 }
+// import { ILink } from "../interfaces"
+// @ts-ignore
+// import stylesNavbar from "../styles/navbar.module"
+
+// export const getLinks = (userId: string): ILink[] => {
+//   return [
+//     {
+//       to: "/",
+//       exact: true,
+//       Title: BsHouse,
+//       className: stylesNavbar.link,
+//       activeClassName: stylesNavbar.link__active,
+//     },
+//     {
+//       to: "/bookmarks",
+//       Title: BsBookmarks,
+//       className: stylesNavbar.link,
+//       activeClassName: stylesNavbar.link__active,
+//     },
+//     {
+//       to: `/profile/${userId}`,
+//       exact: true,
+//       Title: BsPerson,
+//       className: stylesNavbar.link_extend,
+//       activeClassName: stylesNavbar.link__active,
+//     },
+//   ]
+// }
+
+const mainLinks = [
+  {
+    to: "/",
+    exact: true,
+    Title: BsHouse,
+    // className: stylesNavbar.link,
+    // activeClassName: stylesNavbar.link__active,
+  },
+  {
+    to: "/bookmarks",
+    Title: BsBookmarks,
+    privet: true,
+    // className: stylesNavbar.link,
+    // activeClassName: stylesNavbar.link__active,
+  },
+  {
+    to: "/followers",
+    Title: BsPeople,
+    privet: true,
+    // className: stylesNavbar.link,
+    // activeClassName: stylesNavbar.link__active,
+  },
+  {
+    to: "/create-content",
+    Title: BsCloudUpload,
+    privet: true,
+    // className: stylesNavbar.link,
+    // activeClassName: stylesNavbar.link__active,
+  },
+  {
+    Title: BsChatDots,
+    btnKey: btnKeys.chat.keyWord,
+    // className: stylesNavbar.link,
+    // activeClassName: stylesNavbar.link__active,
+  },
+  {
+    Title: BsBell,
+    btnKey: btnKeys.notif.keyWord,
+    // className: stylesNavbar.link,
+    // activeClassName: stylesNavbar.link__active,
+  },
+]
+
+export const links = {
+  admin: [...mainLinks],
+  user: [...mainLinks],
+  unregistered: [...mainLinks],
+}
+
+const mainRoutes = [
+  { path: "/", exact: true, Component: Home },
+  { path: "/profile/:userId", exact: true, Component: Profile },
+]
 
 export const routes = {
   admin: [
-    { path: "/", exact: true, Component: Home },
-    { path: "/conversation", Component: Сonversation },
+    ...mainRoutes,
     { path: "/bookmarks", Component: Bookmarks },
-    { path: "/profile/:userId", exact: true, Component: Profile },
+    { path: "/create-content", Component: CreateContentSet },
+    { path: "/followers", Component: Followers },
   ],
   user: [
-    { path: "/", exact: true, Component: Home },
-    { path: "/conversation", Component: Сonversation },
+    ...mainRoutes,
     { path: "/bookmarks", Component: Bookmarks },
-    { path: "/profile/:userId", exact: true, Component: Profile },
+    { path: "/create-content", Component: CreateContentSet },
+    { path: "/followers", Component: CreateContentSet },
   ],
-  unregistered: [
-    { path: "/", exact: true, Component: Home },
-    { path: "/profile/:userId", exact: true, Component: Profile },
-  ],
+  unregistered: [...mainRoutes],
 }

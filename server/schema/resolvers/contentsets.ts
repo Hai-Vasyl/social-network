@@ -21,12 +21,29 @@ export const Mutation = {
       console.log({ uploads })
       let uploaded = []
       if (uploads.length) {
+        if (uploads.length > 10) {
+          throw new Error(
+            JSON.stringify({
+              uploads: {
+                value: "",
+                msg: ["You cannot select more than 10 files!"],
+              },
+            })
+          )
+        }
         for (let i = 0; i < uploads.length; i++) {
           const bucketUpload = await uploadUploadsBucket(uploads[i])
           uploaded.push(bucketUpload)
         }
       } else {
-        throw new Error("ContentSet must contains media uploads!")
+        throw new Error(
+          JSON.stringify({
+            uploads: {
+              value: "",
+              msg: ["You must select at least one media file!"],
+            },
+          })
+        )
       }
 
       const contentSet = new ContentSet({
@@ -37,6 +54,7 @@ export const Mutation = {
       })
       const contentSetNew = await contentSet.save()
 
+      console.log({ uploaded })
       let uploadsNew = []
       for (let i = 0; i < uploaded.length; i++) {
         const newUpload = new Upload({
@@ -50,13 +68,9 @@ export const Mutation = {
         uploadsNew.push(uploadSaved)
       }
 
-      return {
-        uploads: uploadsNew,
-        contentSet: contentSetNew,
-        comments: [],
-      }
+      return contentSetNew.id
     } catch (error) {
-      throw new Error(`Creating ContentSet error: ${error.message}`)
+      throw new Error(error.message)
     }
   },
 }

@@ -44,6 +44,7 @@ export default gql`
     dislikes: Int!
     comments: Int!
     likeRecord: LikeRecord
+    image: UploadContent
   }
   type UploadContent {
     owner: ID!
@@ -52,11 +53,11 @@ export default gql`
     contentSet: ContentSet!
     key: String!
   }
-  type ContentSetUpload {
-    uploads: [UploadContent]!
-    contentSet: ContentSet!
-    comments: [Comment]!
-  }
+  # type ContentSetUpload {
+  #   uploads: [UploadContent]!
+  #   contentSet: ContentSet!
+  #   comments: [Comment]!
+  # }
   type Message {
     id: ID!
     content: String!
@@ -129,7 +130,7 @@ export default gql`
       uploads: [Upload]!
       content: String!
       category: String!
-    ): ContentSetUpload!
+    ): ID!
     createChat(
       title: String!
       description: String

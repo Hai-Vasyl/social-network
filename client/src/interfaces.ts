@@ -9,11 +9,11 @@ export interface IRoute {
 }
 
 export interface ILink {
-  to: string
+  to?: string
   exact?: boolean
   Title: any
-  className: string
-  activeClassName: string
+  btnKey?: string
+  privet?: boolean
 }
 
 export interface IChatOwner {

@@ -1,4 +1,4 @@
-import { LikesRecord, User } from "../models"
+import { LikesRecord, User, Upload } from "../models"
 
 export const ContentSet = {
   async likeRecord({ id }: { id: string }) {
@@ -15,6 +15,16 @@ export const ContentSet = {
       return user
     } catch (error) {
       throw new Error(`Getting ContentSet owner error: ${error.message}`)
+    }
+  },
+  async image({ id }: { id: string }) {
+    try {
+      const upload = await Upload.findOne({ contentSet: id })
+      return upload
+    } catch (error) {
+      throw new Error(
+        `Getting ContentSet preview image error: ${error.message}`
+      )
     }
   },
 }
