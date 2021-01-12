@@ -275,3 +275,19 @@ export const CREATE_CONTENTSET = gql`
     createContentSet(uploads: $uploads, content: $content, category: $category)
   }
 `
+
+export const EDIT_CONTENTSET = gql`
+  mutation EDIT_CONTENTSET(
+    $contentSetId: ID!
+    $uploads: [Upload]!
+    $content: String!
+    $category: String!
+  ) {
+    editContentSet(
+      contentSetId: $contentSetId
+      uploads: $uploads
+      content: $content
+      category: $category
+    )
+  }
+`

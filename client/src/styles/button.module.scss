@@ -5,11 +5,11 @@
   display: flex;
   & > * {
     margin-left: 10px;
-    &:first-child {
-      margin-left: 0;
-    }
     &:last-child {
       margin-left: auto;
+    }
+    &:first-child {
+      margin-left: 0;
     }
   }
 }

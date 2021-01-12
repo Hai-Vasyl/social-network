@@ -18,7 +18,6 @@ export const Query = {
       //TODO: add validation and check in models
 
       const contentSet = await ContentSet.findById(contentSetId)
-
       return contentSet
     } catch (error) {
       throw new Error(`Getting ContentSet error: ${error.message}`)
@@ -109,7 +108,7 @@ export const Mutation = {
         }
         const prevUploads: any = await Upload.find({ contentSet: contentSetId })
         for (let i = 0; i < prevUploads.length; i++) {
-          await deleteUploadsBucket(prevUploads.key)
+          await deleteUploadsBucket(prevUploads[i].key)
         }
         await Upload.deleteMany({ contentSet: contentSetId })
         for (let i = 0; i < uploads.length; i++) {
@@ -127,7 +126,7 @@ export const Mutation = {
       }
 
       await ContentSet.updateOne(
-        { id: contentSetId },
+        { _id: contentSetId },
         { content, category, date: new Date() }
       )
       return contentSetId

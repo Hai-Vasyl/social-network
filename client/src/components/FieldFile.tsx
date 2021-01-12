@@ -46,9 +46,9 @@ const FieldFile: React.FC<IFieldFileProps> = ({
           <span>
             {file
               ? multiple
-                ? `${numFiles} Files chosen`
+                ? `${numFiles} ${numFiles === 1 ? "File" : "Files"} chosen`
                 : "File chosen"
-              : "Choose file"}
+              : `Choose ${multiple ? "files" : "file"}`}
           </span>
           <input
             className='btn-handler'

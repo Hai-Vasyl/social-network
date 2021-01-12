@@ -15,7 +15,10 @@ import {
   Query as QUnreadMessages,
   Mutation as MUnreadMessages,
 } from "./resolvers/unreadmessages"
-import { Mutation as MContentSets } from "./resolvers/contentsets"
+import {
+  Mutation as MContentSets,
+  Query as QContentSets,
+} from "./resolvers/contentsets"
 import { Chat } from "./resolvers/chat"
 import { Message } from "./resolvers/message"
 import { UserChat } from "./resolvers/userchat"
@@ -33,6 +36,7 @@ const schema = {
       ...QMessages,
       ...QNotifications,
       ...QUnreadMessages,
+      ...QContentSets,
     },
     Mutation: {
       ...MChats,

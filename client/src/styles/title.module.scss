@@ -17,9 +17,10 @@
   &__container {
   }
   &__text {
-    font-size: 1.4em;
+    font-size: 2em;
     padding-bottom: 10px;
     font-weight: normal;
+    font-family: getFont(secondary);
   }
   &__line {
     display: block;
