@@ -1,4 +1,5 @@
-import { LikesRecord, User, Upload } from "../models"
+import { LikesRecord, User, Upload, Comment } from "../models"
+import { types } from "../modules/commentTypes"
 
 export const ContentSet = {
   async likeRecord({ id }: { id: string }) {
@@ -23,8 +24,27 @@ export const ContentSet = {
       return upload
     } catch (error) {
       throw new Error(
-        `Getting ContentSet preview image error: ${error.message}`
+        `Getting ContentSet preview upload error: ${error.message}`
       )
+    }
+  },
+  async uploads({ id }: { id: string }) {
+    try {
+      const uploads = await Upload.find({ contentSet: id })
+      return uploads
+    } catch (error) {
+      throw new Error(`Getting ContentSet uploads error: ${error.message}`)
+    }
+  },
+  async commentsData({ id }: { id: string }) {
+    try {
+      const comments = await Comment.find({
+        contentSet: id,
+        type: types.comment.keyWord,
+      })
+      return comments
+    } catch (error) {
+      throw new Error(`Getting ContentSet comments error: ${error.message}`)
     }
   },
 }

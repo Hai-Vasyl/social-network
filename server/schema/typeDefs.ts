@@ -26,6 +26,7 @@ export default gql`
     content: String!
     date: String!
     comment: ID
+    type: String!
     owner: User!
     contentSet: ID!
     likes: Int!
@@ -45,6 +46,8 @@ export default gql`
     comments: Int!
     likeRecord: LikeRecord
     image: UploadContent!
+    uploads: [UploadContent]!
+    commentsData: [Comment]!
   }
   type UploadContent {
     owner: ID!
@@ -124,9 +127,16 @@ export default gql`
     getNotifications: [Notification]!
     getChatUsers(chatId: ID!): [User]!
     getUnreadMessages: [Message]!
+    getContentSet(contentSetId: ID!): ContentSet!
   }
   type Mutation {
     createContentSet(
+      uploads: [Upload]!
+      content: String!
+      category: String!
+    ): ID!
+    editContentSet(
+      contentSetId: ID!
       uploads: [Upload]!
       content: String!
       category: String!

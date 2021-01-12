@@ -3,10 +3,12 @@ import Profile from "../pages/Profile"
 import CreateContentSet from "../pages/CreateContentSet"
 import Bookmarks from "../pages/Bookmarks"
 import Followers from "../pages/Followers"
+import ContentSet from "../pages/ContentSet"
+import EditContentSet from "../pages/EditContentSet"
+import ContentSets from "../pages/ContentSets"
 import {
   BsBookmarks,
   BsHouse,
-  // BsPerson,
   BsChatDots,
   BsBell,
   BsCloudUpload,
@@ -21,75 +23,35 @@ export const btnKeys = {
     keyWord: "notification",
   },
 }
-// import { ILink } from "../interfaces"
-// @ts-ignore
-// import stylesNavbar from "../styles/navbar.module"
-
-// export const getLinks = (userId: string): ILink[] => {
-//   return [
-//     {
-//       to: "/",
-//       exact: true,
-//       Title: BsHouse,
-//       className: stylesNavbar.link,
-//       activeClassName: stylesNavbar.link__active,
-//     },
-//     {
-//       to: "/bookmarks",
-//       Title: BsBookmarks,
-//       className: stylesNavbar.link,
-//       activeClassName: stylesNavbar.link__active,
-//     },
-//     {
-//       to: `/profile/${userId}`,
-//       exact: true,
-//       Title: BsPerson,
-//       className: stylesNavbar.link_extend,
-//       activeClassName: stylesNavbar.link__active,
-//     },
-//   ]
-// }
 
 const mainLinks = [
   {
     to: "/",
     exact: true,
     Title: BsHouse,
-    // className: stylesNavbar.link,
-    // activeClassName: stylesNavbar.link__active,
   },
   {
     to: "/bookmarks",
     Title: BsBookmarks,
     privet: true,
-    // className: stylesNavbar.link,
-    // activeClassName: stylesNavbar.link__active,
   },
   {
     to: "/followers",
     Title: BsPeople,
     privet: true,
-    // className: stylesNavbar.link,
-    // activeClassName: stylesNavbar.link__active,
   },
   {
     to: "/create-content",
     Title: BsCloudUpload,
     privet: true,
-    // className: stylesNavbar.link,
-    // activeClassName: stylesNavbar.link__active,
   },
   {
     Title: BsChatDots,
     btnKey: btnKeys.chat.keyWord,
-    // className: stylesNavbar.link,
-    // activeClassName: stylesNavbar.link__active,
   },
   {
     Title: BsBell,
     btnKey: btnKeys.notif.keyWord,
-    // className: stylesNavbar.link,
-    // activeClassName: stylesNavbar.link__active,
   },
 ]
 
@@ -101,21 +63,20 @@ export const links = {
 
 const mainRoutes = [
   { path: "/", exact: true, Component: Home },
+  { path: "/content-sets", exact: true, Component: ContentSets },
   { path: "/profile/:userId", exact: true, Component: Profile },
+  { path: "/content-sets/:contentId", Component: ContentSet },
+]
+
+const userRoutes = [
+  { path: "/bookmarks", Component: Bookmarks },
+  { path: "/create-content", Component: CreateContentSet },
+  { path: "/followers", Component: Followers },
+  { path: "/edit-content/:contentId", Component: EditContentSet },
 ]
 
 export const routes = {
-  admin: [
-    ...mainRoutes,
-    { path: "/bookmarks", Component: Bookmarks },
-    { path: "/create-content", Component: CreateContentSet },
-    { path: "/followers", Component: Followers },
-  ],
-  user: [
-    ...mainRoutes,
-    { path: "/bookmarks", Component: Bookmarks },
-    { path: "/create-content", Component: CreateContentSet },
-    { path: "/followers", Component: CreateContentSet },
-  ],
+  admin: [...mainRoutes, ...userRoutes],
+  user: [...mainRoutes, ...userRoutes],
   unregistered: [...mainRoutes],
 }

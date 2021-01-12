@@ -1,0 +1,30 @@
+@import "base";
+
+.title {
+  @extend %flex-center;
+  justify-content: flex-start;
+  margin-top: 15px;
+  margin-bottom: 2em;
+  &__icon {
+    display: flex;
+    margin-right: 10px;
+    color: getColor(second-lighter);
+    & > * {
+      margin: auto;
+      font-size: 40px;
+    }
+  }
+  &__container {
+  }
+  &__text {
+    font-size: 1.4em;
+    padding-bottom: 10px;
+    font-weight: normal;
+  }
+  &__line {
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: getColor(accent);
+  }
+}

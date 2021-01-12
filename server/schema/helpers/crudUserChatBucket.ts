@@ -47,7 +47,7 @@ export const updateUserChatBucket = async (file: any, fileKey: string) => {
   try {
     const { createReadStream, filename } = await file
 
-    deleteFile(fileKey)
+    await deleteFile(fileKey)
 
     const params: any = getInitParams(filename, createReadStream)
 

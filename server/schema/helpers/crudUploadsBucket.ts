@@ -43,20 +43,20 @@ export const uploadUploadsBucket = async (file: any) => {
   }
 }
 
-export const updateUploadsBucket = async (file: any, fileKey: string) => {
-  try {
-    const { createReadStream, filename } = await file
+// export const updateUploadsBucket = async (file: any, fileKey: string) => {
+//   try {
+//     const { createReadStream, filename } = await file
 
-    deleteFile(fileKey)
+//     await deleteFile(fileKey)
 
-    const params: any = getInitParams(filename, createReadStream)
+//     const params: any = getInitParams(filename, createReadStream)
 
-    const uploaded = await s3.upload(params).promise()
-    return uploaded
-  } catch (error) {
-    throw new Error(`Updating file in aws bucket error: ${error.message}`)
-  }
-}
+//     const uploaded = await s3.upload(params).promise()
+//     return uploaded
+//   } catch (error) {
+//     throw new Error(`Updating file in aws bucket error: ${error.message}`)
+//   }
+// }
 
 export const deleteUploadsBucket = async (fileKey: string) => {
   try {

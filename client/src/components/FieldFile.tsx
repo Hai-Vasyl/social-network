@@ -14,6 +14,7 @@ interface IFieldFileProps {
   file: boolean
   isImportant?: boolean
   multiple?: boolean
+  numFiles?: number
 }
 
 const FieldFile: React.FC<IFieldFileProps> = ({
@@ -22,6 +23,7 @@ const FieldFile: React.FC<IFieldFileProps> = ({
   file,
   isImportant,
   multiple,
+  numFiles,
 }) => {
   return (
     <div className={styles.field_file}>
@@ -41,7 +43,13 @@ const FieldFile: React.FC<IFieldFileProps> = ({
           ) : (
             <BsUpload className={styles.field_file__upload_icon} />
           )}
-          <span>{file ? "File chosen" : "Choose file"}</span>
+          <span>
+            {file
+              ? multiple
+                ? `${numFiles} Files chosen`
+                : "File chosen"
+              : "Choose file"}
+          </span>
           <input
             className='btn-handler'
             name={field.param}

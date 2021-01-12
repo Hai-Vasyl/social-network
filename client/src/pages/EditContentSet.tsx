@@ -1,23 +1,28 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import { GET_CONTENTSET_SHORT } from "../fetching/queries"
+import { useQuery } from "@apollo/client"
 import { categories } from "../modules/contentCategories"
-import { BsPlus } from "react-icons/bs"
-import { IField, IAuthErrors } from "../interfaces"
+import { IField } from "../interfaces"
+import ModForm from "../components/ModForm"
 import LoaderData from "../components/LoaderData"
-import Button from "../components/Button"
 import Title from "../components/Title"
-// @ts-ignore
-import stylesBtn from "../styles/button.module"
+import Button from "../components/Button"
 // @ts-ignore
 import stylesForm from "../styles/form.module"
 // @ts-ignore
-import bgImage from "../images/undraw_upload_87y9.svg"
-import { CREATE_CONTENTSET } from "../fetching/mutations"
-import { useMutation } from "@apollo/client"
-import { useHistory } from "react-router-dom"
-import ModForm from "../components/ModForm"
+import stylesBtn from "../styles/button.module"
+import Loader from "../components/Loader"
+import { BsTrash, BsX, BsCheck } from "react-icons/bs"
+// @ts-ignore
+import bgImage from "../images/undraw_build_wireframe_u9m2.svg"
 
-const CreateContentSet = () => {
-  const history = useHistory()
+const EditContentSet = () => {
+  const { contentId }: any = useParams()
+  const {
+    data: contentSetData,
+    loading: loadContentSet,
+  } = useQuery(GET_CONTENTSET_SHORT, { variables: { contentSetId: contentId } })
   const [form, setForm] = useState<IField[]>([
     {
       param: "content",
@@ -41,40 +46,27 @@ const CreateContentSet = () => {
       msg: "",
     },
   ])
-  const [createContentSet, createDSData] = useMutation(CREATE_CONTENTSET)
-
   const options = Object.keys(categories).map((key) => {
     // @ts-ignore
     return { value: categories[key].keyWord, label: categories[key].label }
   })
 
   useEffect(() => {
-    if (createDSData.error) {
-      const errors: IAuthErrors = JSON.parse(
-        (createDSData.error && createDSData.error.message) || "{}"
-      )
+    const contentData = contentSetData && contentSetData.getContentSet
+    if (contentData) {
       setForm((prevForm) =>
-        prevForm.map((field) => {
-          let newField = { ...field, msg: "" }
-          Object.keys(errors).forEach((key: string) => {
-            if (key === field.param) {
-              errors[key].msg &&
-                errors[key].msg.forEach((msg) => {
-                  newField.msg += ` ${msg}`
-                })
-              newField.msg = newField.msg.trim()
+        prevForm.map((filed) => {
+          let fieldValue = filed.value
+          Object.keys(contentData).map((key) => {
+            if (filed.param === key) {
+              fieldValue = contentData[key]
             }
           })
-          return newField
+          return { ...fieldValue, value: fieldValue }
         })
       )
-    } else if (createDSData.data) {
-      const contentSetId =
-        createDSData.data && createDSData.data.createContentSet
-
-      history.push(`/content-sets/${contentSetId}`)
     }
-  }, [createDSData.data, createDSData.error])
+  }, [contentSetData])
 
   const handleChageField = (event: React.ChangeEvent<HTMLInputElement>) => {
     setForm((prevForm) =>
@@ -102,13 +94,21 @@ const CreateContentSet = () => {
 
   const handleSubmitForm = async () => {
     const [content, uploads, category] = form
-    createContentSet({
-      variables: {
-        content: content.value,
-        uploads: uploads.value,
-        category: category.value,
-      },
-    })
+    // createContentSet({
+    //   variables: {
+    //     content: content.value,
+    //     uploads: uploads.value,
+    //     category: category.value,
+    //   },
+    // })
+  }
+
+  const handleDelete = async () => {
+    console.log("delete")
+  }
+
+  const handleResetForm = async () => {
+    console.log("reset")
   }
 
   const handlePickOption = (value: string) => {
@@ -122,13 +122,21 @@ const CreateContentSet = () => {
     )
   }
 
+  if (loadContentSet) {
+    return (
+      <div className='wrapper'>
+        <Loader />
+      </div>
+    )
+  }
+
   return (
     <div className='wrapper'>
-      <Title title='Create new media content' />
+      <Title title='Edit media content' />
       <div className={stylesForm.form}>
         <div className={stylesForm.form__fields}>
           <div className='form-wrapper'>
-            <LoaderData load={createDSData.loading} />
+            {/* <LoaderData load={createDSData.loading} /> */}
             <ModForm
               handleChangeFieldFile={handleChangeFieldFile}
               handlePickOption={handlePickOption}
@@ -140,8 +148,19 @@ const CreateContentSet = () => {
               <Button
                 exClass={stylesBtn.btn_primary}
                 click={handleSubmitForm}
-                title='Create content'
-                Icon={BsPlus}
+                title='Apply changes'
+                Icon={BsCheck}
+              />
+              <Button
+                exClass={stylesBtn.btn_simple}
+                click={handleResetForm}
+                title='Cancell all'
+                Icon={BsX}
+              />
+              <Button
+                exClass={stylesBtn.btn_simple}
+                click={handleDelete}
+                Icon={BsTrash}
               />
             </div>
           </div>
@@ -154,4 +173,4 @@ const CreateContentSet = () => {
   )
 }
 
-export default CreateContentSet
+export default EditContentSet

@@ -1,11 +1,26 @@
 @import "base";
 
+.btns {
+  padding-top: 10px;
+  display: flex;
+  & > * {
+    margin-left: 10px;
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-left: auto;
+    }
+  }
+}
+
 .btn {
-  padding: 15px 13px;
+  padding: 13px 10px;
   display: flex;
   align-items: center;
   color: getColor(font);
-  border-radius: getRadius(main);
+  // font-weight: bold;
+  // border-radius: getRadius(main);
   transition: getTransition(main);
   &:active {
     box-shadow: none;
@@ -17,6 +32,8 @@
   }
   &__icon {
     margin: 0px 4px;
+    font-size: 25px;
+    // color: getColor(accent);
   }
   &__title {
     margin: 0px 4px;
@@ -25,7 +42,9 @@
 
 .btn_primary {
   background-image: getGradient(main);
+  // background-color: getColor(accent);
   box-shadow: getShadow(main);
+  // border: 1px solid getColor(title-simple);
 }
 .btn_simple {
   background-color: transparent;

@@ -83,6 +83,7 @@
     cursor: pointer;
     @extend %flex-center;
     transition: getTransition(main);
+    box-shadow: getShadow(main);
     &:active {
       opacity: 0.5;
     }
@@ -105,6 +106,10 @@
     @extend %flex-center;
     transition: getTransition(main);
     z-index: 3;
+    box-shadow: getShadow(main);
+    &:active {
+      opacity: 0.5;
+    }
   }
   &__select {
     position: absolute;
@@ -113,9 +118,14 @@
     right: 0;
     border: 1px solid getColor(second-light);
     transition: getTransition(main);
-    transform: translateY(-50%) scale(0.8);
+    transform: translateY(-35px) scale(0.8);
     visibility: hidden;
     opacity: 0;
+    height: 200px;
+    background-color: getColor(secondary);
+    overflow-y: auto;
+    @extend %scrollbar;
+    box-shadow: getShadow(main);
     &__open {
       transform: translateY(0) scale(1);
       visibility: visible;

@@ -3,10 +3,10 @@ import { Schema, model, Types } from "mongoose"
 const schema = new Schema({
   owner: { type: Types.ObjectId, ref: "User", required: true },
   date: { type: Date, required: true },
-  content: { type: String, required: true },
+  content: { type: String },
   sticky: { type: Boolean, default: false, required: true },
   category: {
-    type: Boolean,
+    type: String,
     required: true,
     enum: [
       "nature",

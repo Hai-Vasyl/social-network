@@ -235,3 +235,63 @@ export const GET_CHAT_INFO = gql`
     }
   }
 `
+
+export const GET_CONTENTSET = gql`
+  query GET_CONTENTSET($contentSetId: ID!) {
+    getContentSet(contentSetId: $contentSetId) {
+      id
+      owner {
+        id
+        username
+        email
+        ava
+        typeUser
+      }
+      date
+      content
+      sticky
+      category
+      likes
+      dislikes
+      comments
+      likeRecord {
+        liked
+      }
+      image {
+        location
+        key
+      }
+      uploads {
+        location
+        key
+      }
+      commentsData {
+        content
+        date
+        owner {
+          id
+          username
+          email
+          ava
+          typeUser
+        }
+        likes
+        dislikes
+        replies
+        likeRecord {
+          liked
+        }
+      }
+    }
+  }
+`
+
+export const GET_CONTENTSET_SHORT = gql`
+  query GET_CONTENTSET_SHORT($contentSetId: ID!) {
+    getContentSet(contentSetId: $contentSetId) {
+      id
+      content
+      category
+    }
+  }
+`
