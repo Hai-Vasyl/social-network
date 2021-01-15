@@ -286,6 +286,82 @@ export const GET_CONTENTSET = gql`
   }
 `
 
+export const GET_CONTENTSETS = gql`
+  query GET_CONTENTSETS(
+    $category: String
+    $userId: ID
+    $from: Int!
+    $to: Int!
+    $sortKey: String
+    $sortOrder: Int
+  ) {
+    getContentSets(
+      category: $category
+      userId: $userId
+      from: $from
+      to: $to
+      sortKey: $sortKey
+      sortOrder: $sortOrder
+    ) {
+      id
+      owner {
+        id
+        username
+        email
+        ava
+        typeUser
+      }
+      date
+      category
+      likes
+      dislikes
+      comments
+      likeRecord {
+        liked
+      }
+      image {
+        location
+        key
+      }
+    }
+  }
+`
+
+export const GET_CONTENTSETS_USER = gql`
+  query GET_CONTENTSETS_USER(
+    $category: String
+    $userId: ID
+    $from: Int!
+    $to: Int!
+    $sortKey: String
+    $sortOrder: Int
+  ) {
+    getContentSets(
+      category: $category
+      userId: $userId
+      from: $from
+      to: $to
+      sortKey: $sortKey
+      sortOrder: $sortOrder
+    ) {
+      id
+      date
+      category
+      likes
+      dislikes
+      comments
+      sticky
+      likeRecord {
+        liked
+      }
+      image {
+        location
+        key
+      }
+    }
+  }
+`
+
 export const GET_CONTENTSET_SHORT = gql`
   query GET_CONTENTSET_SHORT($contentSetId: ID!) {
     getContentSet(contentSetId: $contentSetId) {

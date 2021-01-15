@@ -36,15 +36,15 @@ export const ContentSet = {
       throw new Error(`Getting ContentSet uploads error: ${error.message}`)
     }
   },
-  async commentsData({ id }: { id: string }) {
-    try {
-      const comments = await Comment.find({
-        contentSet: id,
-        type: types.comment.keyWord,
-      })
-      return comments
-    } catch (error) {
-      throw new Error(`Getting ContentSet comments error: ${error.message}`)
-    }
-  },
+  // async commentsData({ id }: { id: string }) {
+  //   try {
+  //     const comments = await Comment.find({
+  //       contentSet: id,
+  //       type: types.comment.keyWord,
+  //     })
+  //     return comments
+  //   } catch (error) {
+  //     throw new Error(`Getting ContentSet comments error: ${error.message}`)
+  //   }
+  // },
 }

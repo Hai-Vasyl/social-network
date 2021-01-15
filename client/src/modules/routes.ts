@@ -6,6 +6,7 @@ import Followers from "../pages/Followers"
 import ContentSet from "../pages/ContentSet"
 import EditContentSet from "../pages/EditContentSet"
 import ContentSets from "../pages/ContentSets"
+import Categories from "../pages/Categories"
 import {
   BsBookmarks,
   BsHouse,
@@ -63,9 +64,10 @@ export const links = {
 
 const mainRoutes = [
   { path: "/", exact: true, Component: Home },
-  { path: "/content-sets", exact: true, Component: ContentSets },
-  { path: "/profile/:userId", exact: true, Component: Profile },
-  { path: "/content-sets/:contentId", Component: ContentSet },
+  { path: "/categories", exact: true, Component: Categories },
+  { path: "/categories/:contentSetCategory", Component: ContentSets },
+  { path: "/profile/:userId", Component: Profile },
+  { path: "/details/:contentId", Component: ContentSet },
 ]
 
 const userRoutes = [

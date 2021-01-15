@@ -115,3 +115,55 @@ export interface IMessageToast {
     image: string
   }
 }
+
+export interface IContentSet {
+  id: string
+  owner: {
+    id: string
+    username: string
+    email: string
+    ava: string
+    typeUser: string
+  }
+  date: string
+  content?: string
+  sticky?: boolean
+  category: string
+  likes: number
+  dislikes: number
+  comments: number
+  likeRecord: {
+    liked: boolean
+  }
+  image: {
+    location: string
+    key: string
+  }
+  uploads?: {
+    location?: string
+    key?: string
+  }
+  commentsData?: {
+    content?: string
+    date?: string
+    owner?: {
+      id?: string
+      username?: string
+      email?: string
+      ava?: string
+      typeUser?: string
+    }
+    likes?: number
+    dislikes?: number
+    replies?: number
+    likeRecord?: {
+      liked?: boolean
+    }
+  }
+}
+
+export interface ICategory {
+  keyWord: string
+  label: string
+  bgImg: string
+}

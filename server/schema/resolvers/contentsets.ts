@@ -4,6 +4,7 @@ import {
   deleteUploadsBucket,
 } from "../helpers/crudUploadsBucket"
 import { IField, IIsAuth } from "../interfaces"
+import { sortKeys } from "../modules/sort"
 
 export const Query = {
   async getContentSet(
@@ -21,6 +22,43 @@ export const Query = {
       return contentSet
     } catch (error) {
       throw new Error(`Getting ContentSet error: ${error.message}`)
+    }
+  },
+  async getContentSets(
+    _: any,
+    {
+      category,
+      userId,
+      from,
+      to,
+      sortKey = sortKeys.date,
+      sortOrder = -1,
+    }: IField,
+    { isAuth }: { isAuth: IIsAuth }
+  ) {
+    try {
+      if (!isAuth.auth) {
+        throw new Error("Access denied!")
+      }
+      //TODO: add validation and check in models
+
+      const getSortColection = async (sortObj: { [key: string]: any }) => {
+        const categoryQuery = category ? category : { $exists: true }
+        const ownerQuery = userId ? userId : { $exists: true }
+        const collection = await ContentSet.find({
+          category: categoryQuery,
+          owner: ownerQuery,
+        })
+          .sort(sortObj)
+          .skip(from)
+          .limit(to)
+        return collection
+      }
+
+      const collection = await getSortColection({ [sortKey]: sortOrder })
+      return collection
+    } catch (error) {
+      throw new Error(`Getting ContentSets error: ${error.message}`)
     }
   },
 }

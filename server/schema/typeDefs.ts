@@ -47,7 +47,6 @@ export default gql`
     likeRecord: LikeRecord
     image: UploadContent!
     uploads: [UploadContent]!
-    commentsData: [Comment]!
   }
   type UploadContent {
     owner: ID!
@@ -128,6 +127,14 @@ export default gql`
     getChatUsers(chatId: ID!): [User]!
     getUnreadMessages: [Message]!
     getContentSet(contentSetId: ID!): ContentSet!
+    getContentSets(
+      category: String
+      userId: ID
+      from: Int!
+      to: Int!
+      sortKey: String
+      sortOrder: Int
+    ): [ContentSet]!
   }
   type Mutation {
     createContentSet(

@@ -11,8 +11,8 @@ import { SET_ACTIVE_CHAT } from "../redux/chatActive/chatActiveTypes"
 import keyWords from "../modules/keyWords"
 
 interface IUserCardProps {
-  isEnvChat: boolean
-  isLink: boolean
+  isEnvChat?: boolean
+  isLink?: boolean
   user: IOwner
   lighter?: boolean
 }
