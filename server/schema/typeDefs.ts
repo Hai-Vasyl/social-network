@@ -135,6 +135,7 @@ export default gql`
       sortKey: String
       sortOrder: Int
     ): [ContentSet]!
+    TestQuery: String!
   }
   type Mutation {
     createContentSet(

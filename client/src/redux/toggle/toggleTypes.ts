@@ -4,6 +4,8 @@ export const CHAT_TOGGLE = "CHAT_TOGGLE"
 export const CHAT_OPEN = "CHAT_OPEN"
 export const AUTHFORM_OPEN = "AUTHFORM_OPEN"
 export const NOTIFICATIONS_TOGGLE = "NOTIFICATIONS_TOGGLE"
+export const CONTENT_TOGGLE = "CONTENT_TOGGLE"
+export const CONTENT_OPEN = "CONTENT_OPEN"
 export const RESET_TOGGLE = "RESET_TOGGLE"
 
 export interface ToggleDropDown {
@@ -18,10 +20,15 @@ export interface notificationsToggle {
 export interface chatToggle {
   type: typeof CHAT_TOGGLE
 }
+export interface contentToggle {
+  type: typeof CONTENT_TOGGLE
+}
+export interface contentOpen {
+  type: typeof CONTENT_OPEN
+}
 export interface chatOpen {
   type: typeof CHAT_OPEN
 }
-
 export interface authFormOpen {
   type: typeof AUTHFORM_OPEN
 }
@@ -37,3 +44,5 @@ export type ToggleReducerTypes =
   | chatToggle
   | chatOpen
   | authFormOpen
+  | contentToggle
+  | contentOpen

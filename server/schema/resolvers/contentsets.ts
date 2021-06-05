@@ -7,19 +7,27 @@ import { IField, IIsAuth } from "../interfaces"
 import { sortKeys } from "../modules/sort"
 
 export const Query = {
-  async getContentSet(
-    _: any,
-    { contentSetId }: IField,
-    { isAuth }: { isAuth: IIsAuth }
-  ) {
+  async getContentSet(_: any, { contentSetId }: IField) {
+    try {
+      //TODO: add validation and check in models
+
+      const contentSet = await ContentSet.findById(contentSetId)
+      return contentSet
+    } catch (error) {
+      throw new Error(`Getting ContentSet error: ${error.message}`)
+    }
+  },
+  async TestQuery(_: any, __: any, { isAuth }: { isAuth: IIsAuth }) {
     try {
       if (!isAuth.auth) {
         throw new Error("Access denied!")
       }
       //TODO: add validation and check in models
 
-      const contentSet = await ContentSet.findById(contentSetId)
-      return contentSet
+      console.log("sdfsdf")
+      // console.log("hskjdfhjksdfnhjksf")
+      // const contentSet = await ContentSet.findById(contentSetId)
+      return "contentSet"
     } catch (error) {
       throw new Error(`Getting ContentSet error: ${error.message}`)
     }
@@ -33,13 +41,9 @@ export const Query = {
       to,
       sortKey = sortKeys.date,
       sortOrder = -1,
-    }: IField,
-    { isAuth }: { isAuth: IIsAuth }
+    }: IField
   ) {
     try {
-      if (!isAuth.auth) {
-        throw new Error("Access denied!")
-      }
       //TODO: add validation and check in models
 
       const getSortColection = async (sortObj: { [key: string]: any }) => {

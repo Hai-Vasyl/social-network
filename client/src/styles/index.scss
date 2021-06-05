@@ -31,9 +31,10 @@ button {
 }
 
 .wrapper {
-  width: 975px;
-  padding: 0px 20px;
+  width: $wrapper-width;
+  padding: 20px;
   margin: 0px auto;
+  padding-top: 65px;
 }
 .wrapper-extended {
 }
@@ -42,11 +43,12 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: getColor(bg);
-  position: absolute;
+  background-color: getColor(bg-dark);
+  position: fixed;
   opacity: 0;
   visibility: hidden;
   transition: getTransition(main);
+  z-index: 12;
   &--active {
     opacity: 1;
     visibility: visible;

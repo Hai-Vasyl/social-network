@@ -10,7 +10,9 @@ const CategoryModule: React.FC = () => {
       {Object.keys(categories).map((item, index) => {
         // @ts-ignore
         const category = categories[item]
-        return <Category category={category} index={index} />
+        return (
+          <Category category={category} key={category.keyWord} index={index} />
+        )
       })}
     </div>
   )

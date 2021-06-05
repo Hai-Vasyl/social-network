@@ -35,13 +35,14 @@
   display: flex;
   background-color: getColor(secondary);
   cursor: default;
-  margin-bottom: 10px;
+  margin: 0px 0px 15px 15px;
   box-shadow: getShadow(main);
   animation: drag-in-left getTransition(second);
   &:last-child {
     margin-bottom: 0;
   }
   &__notif {
+    margin: 0px 15px 15px 0px;
     animation: drag-in-right getTransition(second);
   }
   &__preview_image {
@@ -89,13 +90,13 @@
     @extend %flex-center;
     justify-content: space-between;
     padding: 10px 0;
-    padding-bottom: 5px;
+    padding-bottom: 1px;
     padding-right: 10px;
-    height: 35px;
     overflow: hidden;
   }
   &__title {
     color: getColor(title-simple);
+    height: 20px;
   }
   &__btn_close {
     width: 20px;

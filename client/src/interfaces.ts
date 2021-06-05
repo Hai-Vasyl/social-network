@@ -5,7 +5,7 @@ export interface IAuthErrors {
 export interface IRoute {
   path: string
   exact?: boolean
-  Component: any
+  component: any
 }
 
 export interface ILink {
@@ -143,24 +143,25 @@ export interface IContentSet {
     location?: string
     key?: string
   }
-  commentsData?: {
-    content?: string
-    date?: string
-    owner?: {
-      id?: string
-      username?: string
-      email?: string
-      ava?: string
-      typeUser?: string
-    }
-    likes?: number
-    dislikes?: number
-    replies?: number
-    likeRecord?: {
-      liked?: boolean
-    }
-  }
 }
+
+// commentsData?: {
+//   content?: string
+//   date?: string
+//   owner?: {
+//     id?: string
+//     username?: string
+//     email?: string
+//     ava?: string
+//     typeUser?: string
+//   }
+//   likes?: number
+//   dislikes?: number
+//   replies?: number
+//   likeRecord?: {
+//     liked?: boolean
+//   }
+// }
 
 export interface ICategory {
   keyWord: string

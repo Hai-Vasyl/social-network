@@ -236,8 +236,26 @@ export const GET_CHAT_INFO = gql`
   }
 `
 
-export const GET_CONTENTSET = gql`
-  query GET_CONTENTSET($contentSetId: ID!) {
+// commentsData {
+//   content
+//   date
+//   owner {
+//     id
+//     username
+//     email
+//     ava
+//     typeUser
+//   }
+//   likes
+//   dislikes
+//   replies
+//   likeRecord {
+//     liked
+//   }
+// }
+
+export const GET_CONTENTSET_DETAILED = gql`
+  query GET_CONTENTSET_DETAILED($contentSetId: ID!) {
     getContentSet(contentSetId: $contentSetId) {
       id
       owner {
@@ -264,23 +282,6 @@ export const GET_CONTENTSET = gql`
       uploads {
         location
         key
-      }
-      commentsData {
-        content
-        date
-        owner {
-          id
-          username
-          email
-          ava
-          typeUser
-        }
-        likes
-        dislikes
-        replies
-        likeRecord {
-          liked
-        }
       }
     }
   }
@@ -369,5 +370,11 @@ export const GET_CONTENTSET_SHORT = gql`
       content
       category
     }
+  }
+`
+
+export const TEST = gql`
+  query TEST {
+    TestQuery
   }
 `

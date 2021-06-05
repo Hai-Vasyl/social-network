@@ -1,3 +1,4 @@
+import { RiLightbulbFlashLine } from "react-icons/ri"
 import {
   ToggleReducerTypes,
   DROPDOWN_TOGGLE,
@@ -7,6 +8,8 @@ import {
   CHAT_OPEN,
   CHAT_TOGGLE,
   AUTHFORM_OPEN,
+  CONTENT_OPEN,
+  CONTENT_TOGGLE,
 } from "./toggleTypes"
 
 interface IInitState {
@@ -14,6 +17,7 @@ interface IInitState {
   authForm: boolean
   chat: boolean
   notifications: boolean
+  content: boolean
 }
 
 const initState: IInitState = {
@@ -21,6 +25,7 @@ const initState: IInitState = {
   authForm: false,
   chat: false,
   notifications: false,
+  content: false,
 }
 
 const toggleReducer = (
@@ -38,6 +43,11 @@ const toggleReducer = (
         ...initState,
         authForm: !state.authForm,
       }
+    case CONTENT_TOGGLE:
+      return {
+        ...initState,
+        content: !state.content,
+      }
     case NOTIFICATIONS_TOGGLE:
       return {
         ...initState,
@@ -52,6 +62,11 @@ const toggleReducer = (
       return {
         ...initState,
         chat: true,
+      }
+    case CONTENT_OPEN:
+      return {
+        ...initState,
+        content: true,
       }
     case AUTHFORM_OPEN:
       return {

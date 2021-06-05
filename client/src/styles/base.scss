@@ -16,6 +16,8 @@ $colors: (
   bg-dark: rgba(0, 0, 0, 0.5),
   bg-light: hsla(240, 14%, 25%, 0.51),
 );
+$wrapper-width: 975px;
+$wrapper-padding-width: 935px;
 $shadows: (
   main: (
     0px 1px 2px rgb(33, 32, 37),
@@ -114,7 +116,7 @@ $gradients: (
   opacity: 0;
   visibility: hidden;
   transform: translate(-50%, -50%) scale(0.9);
-  z-index: 10;
+  z-index: 15;
 }
 %popup-fade-in {
   opacity: 1;

@@ -7,6 +7,7 @@ import ContentSet from "../pages/ContentSet"
 import EditContentSet from "../pages/EditContentSet"
 import ContentSets from "../pages/ContentSets"
 import Categories from "../pages/Categories"
+
 import {
   BsBookmarks,
   BsHouse,
@@ -63,18 +64,18 @@ export const links = {
 }
 
 const mainRoutes = [
-  { path: "/", exact: true, Component: Home },
-  { path: "/categories", exact: true, Component: Categories },
-  { path: "/categories/:contentSetCategory", Component: ContentSets },
-  { path: "/profile/:userId", Component: Profile },
-  { path: "/details/:contentId", Component: ContentSet },
+  { path: "/", exact: true, component: Home },
+  { path: "/categories", exact: true, component: Categories },
+  { path: "/content-sets", exact: true, component: ContentSets },
+  { path: "/profile/:userId", component: Profile },
+  { path: "/details/:contentId", component: ContentSet },
 ]
 
 const userRoutes = [
-  { path: "/bookmarks", Component: Bookmarks },
-  { path: "/create-content", Component: CreateContentSet },
-  { path: "/followers", Component: Followers },
-  { path: "/edit-content/:contentId", Component: EditContentSet },
+  { path: "/bookmarks", component: Bookmarks },
+  { path: "/create-content", component: CreateContentSet },
+  { path: "/followers", component: Followers },
+  { path: "/edit-content/:contentId", component: EditContentSet },
 ]
 
 export const routes = {

@@ -5,10 +5,19 @@
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 1fr;
   grid-gap: 15px;
+  border-bottom: 1px solid getColor(secondary);
+  &__extend {
+    grid-template-columns: repeat(4, 1fr);
+    .data_module__image {
+      height: 220px;
+    }
+  }
 }
 
 .data_module {
+  margin-bottom: 10px;
   &__link {
+    display: block;
     position: relative;
     margin-bottom: 5px;
     box-shadow: getShadow(main);
@@ -16,6 +25,17 @@
   &__image {
     @extend %image;
     height: 300px;
+  }
+  &__reference {
+    @extend %flex-center;
+    @extend %center-position;
+    color: getColor(font);
+  }
+  &__reference_icon {
+    font-size: 25px;
+  }
+  &__reference_text {
+    font-size: 1.2em;
   }
   &__link_overlay {
     position: absolute;
@@ -31,6 +51,12 @@
     &:hover {
       opacity: 1;
       border-color: getColor(title-simple);
+    }
+  }
+  &__link_overlay_fixed {
+    opacity: 1;
+    &:hover {
+      border-color: getColor(accent);
     }
   }
   &__rate {
@@ -84,5 +110,18 @@
     color: getColor(font);
     font-size: 0.7em;
     color: getColor(accent);
+  }
+}
+
+.content_popup {
+  @extend %popup-fade-out;
+  background-color: getColor(secondary);
+  width: $wrapper-padding-width;
+  height: 60vh;
+  transition: 3s ease;
+  opacity: 0;
+  &__active {
+    opacity: 1;
+    @extend %popup-fade-in;
   }
 }
