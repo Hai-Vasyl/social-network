@@ -40,6 +40,8 @@ const isDev = NODE_ENV === "development"
         isAuth: isAuth(req),
       }),
     })
+
+    // @ts-ignore
     server.applyMiddleware({ app })
 
     if (!isDev) {

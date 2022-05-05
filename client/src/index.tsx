@@ -16,13 +16,12 @@ import { getMainDefinition } from "@apollo/client/utilities"
 import { WebSocketLink } from "@apollo/client/link/ws"
 import { createUploadLink } from "apollo-upload-client"
 
-const isDev = true
-const host = isDev
-  ? "localhost:5000"
-  : window.location.href.split("//")[1].split("/")[0]
+const isDev = process.env.NODE_ENV === "development"
+const origin = isDev ? "http://localhost:5000" : window.location.origin
+const host = isDev ? "localhost:5000" : window.location.host
 
 const httpLink = createUploadLink({
-  uri: `${isDev ? "http" : "https"}://${host}/graphql`,
+  uri: `${origin}/graphql`,
 })
 
 const websocketLink = new WebSocketLink({

@@ -7,8 +7,7 @@ const schema = new Schema({
   date: { type: Date, required: true },
   image: {
     type: String,
-    default:
-      "https://social-network--chat-user-bucket.s3-eu-west-1.amazonaws.com/social-network-chat-image.jpg",
+    default: "https://messenger--upload.s3.eu-central-1.amazonaws.com/chat.png",
   },
   imageKey: { type: String, default: "" },
   owner: { type: Types.ObjectId, ref: "User" },

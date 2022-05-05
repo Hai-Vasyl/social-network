@@ -110,6 +110,7 @@
     border-radius: 50%;
     border: 1px solid getColor(second-light);
     transition: getTransition(main);
+    overflow: hidden;
     &__active {
       border-color: getColor(accent);
     }
